@@ -1,37 +1,31 @@
-// Function to change the title.
-function changeTitle(event) {
-    title.innerHTML = event.target.value;
+// Change title, change color of words in the title, click through the four subtitle options.
+function changeTitle() {
+    title = document.querySelector('#mainHeading')
+    if (title.innerHTML === "This is the main heading.") {
+        title.innerHTML = "And this is the second."
+    }
+    else if (title.innerHTML === "And this is the second.") {
+        title.innerHTML = "Final one I promise!"
+    }
+    else if (title.innerHTML === "Final one I promise!") {
+        title.innerHTML = "Just kidding ;p"
+    }
+    else title.innerHTML = "This is the main heading."
 }
 
 
-// Function to change the text of the subtitle, 3 subtitle options.
-function changeSubtitle() {
-    subtitle = document.querySelector('#subtitle1')
-    if (subtitle.innerHTML === "Ok, now we have a subtitle.") {
-        subtitle.innerHTML = "And look, it changes at the click of a button."
-    }
-    else if (subtitle.innerHTML === "And look, it changes at the click of a button.") {
-        subtitle.innerHTML = "How fascinating..."
-    }
-    else {
-        subtitle.innerHTML = "Ok, now we have a subtitle.";
-    }
-};
+document.addEventListener('DOMContentLoaded', () => {
+    // Set variables
 
+    subtitle = document.querySelector('#subtitle')
 
-document.addEventListener('DOMContentLoaded', function() {
-    title = document.querySelector('#titleToChange')
+    // change title
+    document.querySelector('#mainTitleButton').onclick = changeTitle;
 
-    // Change the title
-    document.querySelector('select').onchange = changeTitle;
-
-    // Change the color of the title
-    document.querySelectorAll('button[data-color]').forEach(function(button) {
-        button.onclick = function() {
+    // Change title color
+    document.querySelectorAll('button[data-color]').forEach((button) => {
+        button.onclick = () => {
             title.style.color = button.dataset.color;
         }
     })
-
-    // Change the subtitle
-    document.querySelector('#subtitle1Button').onclick = changeSubtitle;
 });
