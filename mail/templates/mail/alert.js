@@ -28,4 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
             title.style.color = button.dataset.color;
         }
     })
+
+    // Change the subtitle
 });
