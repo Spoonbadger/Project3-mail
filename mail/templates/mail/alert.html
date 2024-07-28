@@ -1,15 +1,23 @@
-<!-- use buttons to change the color of our heading. -->
+<!-- use buttons to change the color of our heading. Two heading options to switch between -->
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Colour titles</title>
+        <title>Boozy Bev</title>
         <script src="alert.js"></script>
     </head>
     <body>
-        <h1 id="titleToChange">This is the title.</h1>
-        <button data-color="red">Red</button>
-        <button data-color="orange">Orange</button>
-        <button data-color="green">Green</button>
-        <button data-color="blue">Blue</button>
+        <h1 id="titleToChange">This is the first title.</h1>
+        <select>
+            <option value="This is the first title.">1</option>
+            <option value="This is the second title">2</option>
+            <option value="This is the third title">3</option>
+            <option value="This is the fourth title">4</option>
+        </select><br><br>
+        <button data-color="lightgreen">Pink</button>
+        <button data-color="pink">Green</button>
+        <button data-color="green">Light-green</button>
+        <!-- Add a subtitle to change with buttons. -->
+         <h2 id="subtitle1">Ok, now we have a subtitle.</h2>
+         <button id="subtitle1Button">Click</button>
     </body>
 </html>
