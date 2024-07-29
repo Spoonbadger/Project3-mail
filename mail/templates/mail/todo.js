@@ -1,11 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Set the variables I need.
-    const newTask = document.querySelector('#newTask')
+    // Set variables: the task input and the submit button
+    const newTask = document.querySelector('#inputTask')
     const submit = document.querySelector('#submitButton')
 
-    // Initialize the submit button as diabled.
+    // Make sure the submit button is disabled if there is no text in the task input box.
     submit.disabled = true;
-    // Change to enabled if words are input into the text box
     newTask.onkeyup = () => {
         if (newTask.value.length > 0) {
             submit.disabled = false;
@@ -15,20 +14,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Add tasks to the list
+    // Append the list when a task is submitted
     document.querySelector('#taskForm').onsubmit = () => {
-        const task = newTask.value;
-        const li = document.createElement('li');
-        li.innerHTML = task;
-        but = document.createElement('button');
-        but.innerHTML = "Remove";
+        const li = document.createElement('li')
+        li.innerHTML = newTask.value
+        let but = document.createElement('button')
+        but.innerHTML = "Remove"
         li.appendChild(but);
         document.querySelector('#tasks').appendChild(li)
+
+        // Make the new button remove the list item when clicked.
         but.onclick = () => {
-            li.remove()
+            li.remove();
         }
+
+        //reset the input box
         newTask.value = '';
-        submit.disabled = true;
+
         return false;
     }
-});
+})
