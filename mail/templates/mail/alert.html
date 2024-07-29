@@ -1,13 +1,14 @@
-<!-- Have a heading that can be changed with a text box, have the color of the text change on every keystroke -->
+<!-- Make a TODO list. -->
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Switch Headings</title>
-        <script src="alert.js"></script>
-    </head>
-    <body>
-        <h1 id="titleMain">This is the title.</h1>
-        <input autofocus id="inputBox" placeholder="Type here..." type="textarea">
-        <button id="headingButton" style="color: darkgreen">Change</button>
-    </body>
-</html>
+<head>
+    <title>TODO list</title>
+    <script src="todo.js"></script>
+</head>
+<body>
+    <h1>TODO list</h1>
+    <ul id="tasks" style="font-size: large"></ul>
+    <form id="taskForm">
+        <input id="newTask" type="text">
+        <input id="submitButton" type="submit"></button>
+    </form>
+</body>
