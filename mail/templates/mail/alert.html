@@ -1,25 +1,13 @@
-<!-- use buttons to change the color of our heading. Two heading options to switch between using a button. Add a subtitle that you can change a dropdown menu...
- add a counter.-->
+<!-- Have a heading that can be changed with a text box, have the color of the text change on every keystroke -->
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Boozy Tony</title>
+        <title>Switch Headings</title>
         <script src="alert.js"></script>
     </head>
     <body>
-        <h1 id="mainHeading">This is the main heading.</h1>
-        <button id="mainTitleButton">Click</button><br><br>
-        <button data-color="green">Pink</button>
-        <button data-color="pink">Brown</button>
-        <button data-color="orange">Orange</button>
-        <h2 id="subtitle">Here is the subtitle.</h2>
-        <select id="subtitleSelect">
-            <option value="Here is the subtitle">One</option>
-            <option value="Here is another">Two</option>
-            <option value="This one is the third">Three</option>
-            <option value="And this one is the fourth">Four</option>
-        </select>
-        <h1 id="counter">0</h1>
-        <button id="counterButton">Count</button>
+        <h1 id="titleMain">This is the title.</h1>
+        <input autofocus id="inputBox" placeholder="Type here..." type="textarea">
+        <button id="headingButton" style="color: blue">Change</button>
     </body>
 </html>
