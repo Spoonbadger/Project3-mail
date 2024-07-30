@@ -1,9 +1,29 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Set variables: the task input and the submit button
-    const newTask = document.querySelector('#inputTask')
-    const submit = document.querySelector('#submitButton')
+    // Append task items to a webpage list
+    let newTask = document.querySelector('#taskInput')
 
-    // Make sure the submit button is disabled if there is no text in the task input box.
+    document.querySelector('#taskForm').onsubmit = () => {
+        let li = document.createElement('li');
+        li.innerHTML = newTask.value;
+        // Add a button to each task item which can remove each task item...
+        removeButton = document.createElement('button')
+        removeButton.innerHTML = "remove"
+        li.appendChild(removeButton);
+
+        document.querySelector('#tasks').appendChild(li);
+
+        // Have the button remove item on click
+        removeButton.onclick = () => {
+            li.remove()
+        }
+        // Reset the form
+        newTask.value = '';
+        submit.disabled = true;
+        // Stop the form from submitting
+        return false;
+    }
+    // Disable the submit button when there is no text
+    submit = document.querySelector('#submitButton');
     submit.disabled = true;
     newTask.onkeyup = () => {
         if (newTask.value.length > 0) {
@@ -13,24 +33,4 @@ document.addEventListener('DOMContentLoaded', () => {
             submit.disabled = true;
         }
     }
-
-    // Append the list when a task is submitted
-    document.querySelector('#taskForm').onsubmit = () => {
-        const li = document.createElement('li')
-        li.innerHTML = newTask.value
-        let but = document.createElement('button')
-        but.innerHTML = "Remove"
-        li.appendChild(but);
-        document.querySelector('#tasks').appendChild(li)
-
-        // Make the new button remove the list item when clicked.
-        but.onclick = () => {
-            li.remove();
-        }
-
-        //reset the input box
-        newTask.value = '';
-
-        return false;
-    }
-})
+});
