@@ -1,13 +1,16 @@
-<!-- Set a counter that I can click and that autoincrements every second -->
+<!-- make the site a bit more interactive by allowing the user to choose which currency they would like to see. 
+ We’ll start by altering our HTML to allow the user to input a currency: -->
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Counter</title>
-        <script src="todo.js"></script>
+        <title>Currency Converter</title>
+        <script src="currency.js"></script>
     </head>
     <body>
-        <h1>Counter</h1>
-        <h1 id="counterElement">0</h1>
-        <button id="counterButton">Click</button>
+        <form id="currencyForm">
+            <input id="currencyInput" type="text">
+            <input id="submitCurrency" type="submit">
+        </form>
+        <p id="currencyParagraph">$1 = ...</p>
     </body>
 </html>
