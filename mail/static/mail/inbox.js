@@ -6,29 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelector('#archived').addEventListener('click', () => load_mailbox('archive'));
   document.querySelector('#compose').addEventListener('click', compose_email);
 
-  // Check for 'compose email' submission
-  document.querySelector('#compose-form').onsubmit = (event) => {
-      // Stop the default form submitting, could use return False at the end but this is more specific.
-      event.preventDefault()
-      // Set the variable
-      const recipients = document.querySelector('#compose-recipients').value;
-      const subject = document.querySelector('#compose-subject').value;
-      const body = document.querySelector('#compose-body').value;
-      fetch('emails', {
-        method: 'POST',
-        body: JSON.stringify({
-            recipients: recipients,
-            subject: subject,
-            body: body
-        })
-      })
-      .then(response => response.json())
-      .then(result => {
-          // Print result
-          console.log(result);
-          load_mailbox('sent');
-      });
-    }
+  // Sending an email
+  document.querySelector('#compose-form').onsubmit = submitEmail;
 
   // By default, load the inbox
   load_mailbox('inbox');
@@ -54,4 +33,57 @@ function load_mailbox(mailbox) {
 
   // Show the mailbox name
   document.querySelector('#emails-view').innerHTML = `<h3>${mailbox.charAt(0).toUpperCase() + mailbox.slice(1)}</h3>`;
+
+  // Fetch the emails for the mailbox select
+  fetch(`emails/${mailbox}`)
+  .then(response => response.json())
+  .then(emails => {
+    emails.forEach(email => {
+      const element = document.createElement('div');
+      element.className = 'list-group-item';
+      element.innerHTML = `
+      <div>Subject: ${email.subject}</div>
+      <div>Sender: ${email.sender}  Received: ${email.timestamp}</div>
+      `;
+
+      // Check if the email has been read in order to choose the appropriate tile background color.
+      if (email.read === "true") {
+        className = 'read';
+      }
+      else {
+        className = 'unread';
+      }
+
+      element.addEventListener('click', () => {
+        // TODO change to link to the email clicked on.
+        console.log("This element has been clicked")
+      })
+      document.querySelector('#emails-view').append(element)
+    })
+  })
+}
+
+
+function submitEmail(event) {
+
+  // Stop the default action of the form continually submitting
+  event.preventDefault();
+  // Set variables needed for email
+  const recipients = document.querySelector('#compose-recipients').value;
+  const subject = document.querySelector('#compose-subject').value;
+  const body = document.querySelector('#compose-body').value;
+
+  // Fetch to the backend as a 'POST' method
+  fetch('emails', {
+    method: 'POST',
+    body: JSON.stringify({
+      recipients: recipients,
+      subject: subject,
+      body: body,
+    })
+  })
+  .then(response => response.json())
+  .then(result => {
+    console.log(result)
+  });
 }
