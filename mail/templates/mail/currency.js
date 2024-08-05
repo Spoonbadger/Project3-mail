@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Get the relevant exchange rate from the data
             let exchangeRate = data.rates[currency];
             // Print out on the webpage
-            document.querySelector('#currencyParagraph').innerHTML = `$1 = ${exchangeRate.toFixed(3)} ${currency}`;
+            document.querySelector('#currencyParagraph').innerHTML = `1EUR = ${exchangeRate.toFixed(3)} ${currency}`;
         })
     }
 })
