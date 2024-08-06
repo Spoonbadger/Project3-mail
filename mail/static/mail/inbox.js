@@ -151,7 +151,7 @@ function read_email(email, user) {
           else {
             document.querySelector('#compose-subject').value = `Re: ${email.subject}`;
           }
-          document.querySelector('#compose-body').value = `On ${email.timestamp}, ${email.sender} wrote:\n`;
+          document.querySelector('#compose-body').value = `On ${email.timestamp}, ${email.sender} wrote:\n ${email.body}\n`;
         }
       }
   });
