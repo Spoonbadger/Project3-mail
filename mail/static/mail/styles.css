@@ -2,3 +2,10 @@ textarea {
     min-height: 400px;
 }
 
+.read {
+    background-color: whitesmoke;
+}
+
+.unread {
+    background-color: white;
+}

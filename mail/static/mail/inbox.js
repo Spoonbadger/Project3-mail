@@ -44,6 +44,12 @@ function load_mailbox(mailbox) {
       emails.forEach(email => {
         const element = document.createElement('div');
         element.className = 'list-group-item'
+        if (!email.read) {
+          element.classList = 'unread';
+        }
+        else {
+          element.classList = 'read';
+        }
         element.innerHTML = `
         <div><strong>From:</strong> ${email.sender}</div>
         <div><strong>Subject:</strong>${email.subject}</div>
