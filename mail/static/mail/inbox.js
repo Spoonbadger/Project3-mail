@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // By default, load the inbox
   load_mailbox('inbox');
 
-  document.querySelector('#compose-form').onsubmit() = send_email;
+  document.querySelector('#compose-form').onsubmit = send_email;
 });
 
 function compose_email() {
@@ -32,6 +32,29 @@ function load_mailbox(mailbox) {
 
   // Show the mailbox name
   document.querySelector('#emails-view').innerHTML = `<h3>${mailbox.charAt(0).toUpperCase() + mailbox.slice(1)}</h3>`;
+
+  // Collect all emails from the selected mailbox
+  fetch(`/emails/${mailbox}`)
+  .then(response => response.json())
+  .then(emails => {
+      // Print emails to console
+      console.log(emails);
+
+      // Create element for each email to display in a list
+      emails.forEach(email => {
+        const element = document.createElement('div');
+        element.className = 'list-group-item'
+        element.innerHTML = `
+        <div><strong>From:</strong> ${email.sender}</div>
+        <div><strong>Subject:</strong>${email.subject}</div>
+        <div><span class='email-timestamp' style='color: gray'>${email.timestamp}</span></div>
+        `;
+        element.addEventListener('click', function() {
+            console.log('This element has been clicked!')
+        })
+        document.querySelector('#emails-view').append(element);
+      });
+  });
 }
 
 function send_email() {
