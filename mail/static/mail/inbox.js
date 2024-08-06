@@ -108,13 +108,13 @@ function read_email(email, user) {
       // Create an archive/unarchive button
       if (email.sender != user) {
         const archiveButton = document.createElement('button');
-        archiveButton.classList.add('btn')
+        archiveButton.classList.add('btn');
         if (!email.archived) {
-          archiveButton.innerHTML = "Archive"
+          archiveButton.innerHTML = "Archive";
           archiveButton.classList.add('btn-light');
         }
         else {
-          archiveButton.innerHTML = "Unarchive"
+          archiveButton.innerHTML = "Unarchive";
           archiveButton.classList.add('btn-danger');
         }
         archiveButton.addEventListener('click', function() {
@@ -134,6 +134,25 @@ function read_email(email, user) {
           })
         });
         document.querySelector('#archive-button').append(archiveButton);
+
+        // Reply button
+        const replyButton = document.createElement('button');
+        replyButton.classList.add('btn', 'btn-primary');
+        replyButton.innerHTML = 'Reply';
+        document.querySelector('#archive-button').append(replyButton);
+        replyButton.onclick = () => {
+          compose_email()
+          // Fill in composition fields
+          document.querySelector('#compose-recipients').value = email.sender;
+          
+          if (email.subject.startsWith('Re:')) {
+            document.querySelector('#compose-subject').value = `${email.subject}`;
+          }
+          else {
+            document.querySelector('#compose-subject').value = `Re: ${email.subject}`;
+          }
+          document.querySelector('#compose-body').value = `On ${email.timestamp}, ${email.sender} wrote:\n`;
+        }
       }
   });
 }
